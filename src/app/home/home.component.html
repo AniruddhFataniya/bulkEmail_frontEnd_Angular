@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="card-body">
+    <h5 style="background-color: #bbdefb;">Dashboard</h5>
+
+    <div class="container">
+
+      <div class="shadow p-3 mb-5 bg-white rounded text-center">
+        <h6>Last 24 hours</h6>
+
+        <div class="row d-flex justify-content-center">
+
+          <div class="card mx-2 mt-2 bg-success col-lg-2 d-flex align-items-stretch ">
+
+            <div class="card-body text-center ">
+              <h5 class="card-title" style="color: white;">Sent</h5><br>
+              <h5 class="card-text" style="color: white;">{{sentCount}}</h5>
+
+            </div>
+
+          </div>
+          <div class="card mx-2 mt-2 bg-primary col-lg-2 d-flex align-items-stretch">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Delivered</h5><br>
+              <h5 class="card-text" style="color: white;">{{deliveredCount}}</h5>
+
+            </div>
+
+          </div>
+
+          <div class="card mx-2 mt-2 col-lg-2 d-flex align-items-stretch" style=" background-color: #ab47bc">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Opened</h5><br>
+              <h5 class="card-text" style="color: white;">{{openedCount}}</h5>
+
+            </div>
+
+          </div>
+
+          <div class="card mx-2 mt-2 col-lg-2 d-flex align-items-stretch" style=" background-color: #7986cb; ">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Clicks</h5><br>
+              <h5 class="card-text" style="color: white;">{{clickCount}}</h5>
+
+            </div>
+
+          </div>
+          <div class="card mx-2 mt-2 col-lg-2 d-flex align-items-stretch" style=" background-color: #ec407a;">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Bounced</h5><br>
+              <h5 class="card-text" style="color: white;">{{bounceCount}}</h5>
+
+            </div>
+
+          </div>
+
+          <div class="card mx-2 mt-2 col-lg-2 d-flex align-items-stretch" style=" background-color: #ff7043">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Marked as spam</h5><br>
+              <h5 class="card-text" style="color: white;">{{spamMarkCount}}</h5>
+
+            </div>
+
+          </div>
+
+          <div class="card mx-2 mt-2 col-lg-2 d-flex align-items-stretch" style=" background-color: #757575">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Unsubscriptions</h5><br>
+              <h5 class="card-text" style="color: white;">{{unsubscribeCount}}</h5>
+
+            </div>
+
+          </div>
+
+          <div class="card mx-2 mt-2 col-lg-2 d-flex align-items-stretch" style=" background-color: #e53935">
+
+            <div class="card-body text-center">
+              <h5 class="card-title" style="color: white;">Rendering Failures</h5><br>
+              <h5 class="card-text" style="color: white;">{{renderingFailureCount}}</h5>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

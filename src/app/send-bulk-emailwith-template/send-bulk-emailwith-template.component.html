@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="card" style="width:50%; margin:10px auto">
+    <div class="card-header">
+      <h4>Send Email</h4>
+    </div>
+    <div class="card-body ">
+      <div *ngIf="showAlert">
+        <div class="alert alert-success">
+          <strong>Email(s) sent!</strong>
+        </div>
+      </div>
+      <form [formGroup]="emailForm">
+        <div class="form-group">
+          <label for="sender">From:</label>
+          <input type="email" class="form-control" id="sender" formControlName="sender" (blur)="searchIdentity()"
+            [ngClass]="{'is-invalid':submitted && emailForm.controls.sender.errors || err}"
+            placeholder="Enter email address">
+          <div *ngIf="submitted && emailForm.controls.sender.errors" class="text-danger">
+            <div *ngIf="submitted && emailForm.controls.sender.errors.required">
+              Please enter the email address
+            </div>
+            <div *ngIf="submitted && emailForm.controls.sender.errors.email">
+              Please enter a valid email address
+            </div>
+
+          </div>
+          <div *ngIf="err" class="text-danger">
+            Please enter registered email address
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to">To:</label>
+          <input type="email" multiple class="form-control" id="to" formControlName="toAddresses"
+            (keyup)="assignCount(this.emailForm.controls.toAddresses.value)"
+            (blur)="assignValid(this.emailForm.controls.toAddresses.value)"
+            [ngClass]="{'is-invalid':submitted && emailForm.controls.toAddresses.errors || emailCountErr || !valid}"
+            placeholder="Enter email address(es)">
+          <div id="toAddressesCount" class="form-text">Email count: {{emailCount}}</div>
+          <div *ngIf="submitted && emailForm.controls.toAddresses.errors" class="text-danger">
+            <div *ngIf="submitted && emailForm.controls.toAddresses.errors.required">
+              Please enter at least one recipient
+            </div>
+            <div *ngIf="submitted && emailForm.controls.toAddresses.errors.emailsValidator">
+              Please enter valid email address(es)
+            </div>
+
+          </div>
+          <div *ngIf="emailCountErr" class="text-danger">
+            You can send only 50 emails at a time
+          </div>
+          <div *ngIf="!valid" class="text-danger">
+            Please enter valid email address(es)
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="templateName">Template:</label>
+          <select class="form-control" id="templateName" formControlName="templateName"
+            [ngClass]="{'is-invalid':submitted && emailForm.controls.templateName.errors}">
+            <option *ngFor="let templateName of templateNames" [ngValue]="templateName">{{templateName}}</option>
+
+          </select>
+          <div *ngIf="submitted && emailForm.controls.templateName.errors" class="text-danger">
+            <div *ngIf="submitted && emailForm.controls.templateName.errors.required">
+              Please select a template
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="receiverName">Receiver's name (Optional):</label>
+          <input type="text" multiple class="form-control" id="receiverName" formControlName="receiverName"
+            placeholder="Enter receiver's name (optional)">
+          <div id="receiverNameHelp" class="form-text">You can add the name of the receiver if it is available in the
+            template selected</div>
+        </div>
+        <button type="submit" (click)="sendBulkEmail(emailForm)" [disabled]="err"
+          class="btn btn-primary mt-3">Send</button>
+
+      </form>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="card-body">
+        <h5 style="background-color: #bbdefb;">Template List</h5>
+        <p style="background-color: burlywood">Remaining template quota: {{templateCount}}</p>
+        <table class="table table-light mt-1">
+            <thead class="thead-light">
+                <tr>
+                    <th>No.</th>
+                    <th>Template Name</th>
+                    <th>Created on</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let template of templates; let i =index">
+
+                    <td>{{i + 1}}</td>
+                    <td>{{template.templateName}}</td>
+                    <td>{{template.creationDate}}</td>
+
+                    <td>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteConfirmationModal"
+                            (click)="assign(template.templateName, template.htmlPart)">Delete</button>
+
+                        <button type="button" class="btn btn-primary mx-2" data-bs-toggle="modal"
+                            data-bs-target="#templatePreviewModal"
+                            (click)="assign(template.templateName, template.htmlPart)">Preview</button>
+
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Warning!</h5>
+
+            </div>
+            <div class="modal-body">
+                Are you sure to delete <b>"{{templateName}}"</b> template?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()"
+                    data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="deleteTemplate()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="templatePreviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>Preview:</b> {{templateName}}</h5>
+
+            </div>
+            <div class="modal-body">
+                <div [innerHTML]=" htmlPart | sanitizeHtml "> </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()"
+                    data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>

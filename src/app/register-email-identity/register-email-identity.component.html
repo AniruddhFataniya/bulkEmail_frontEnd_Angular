@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="card" style="width:50%; margin:10px auto">
+    <div class="card-header">
+      <h4>Register Email Identity</h4>
+    </div>
+    <div class="card-body ">
+      <div *ngIf="showAlert">
+        <div class="alert alert-success">
+
+          <strong>Check the inbox, Verify the email address by clicking on verification link sent!</strong>
+        </div>
+
+      </div>
+
+      <form [formGroup]="eform">
+        <div class="form-group">
+          <label for="sender">Email Address:</label>
+          <input type="email" class="form-control" id="sender" formControlName="email" (keyup)="searchIdentity()"
+            [ngClass]="{'is-invalid':submitted && eform.controls.email.errors || err}"
+            placeholder="Enter email address to register">
+          <div *ngIf="submitted && eform.controls.email.errors" class="text-danger">
+            <div *ngIf="submitted && eform.controls.email.errors.required">
+              Please enter the email address
+            </div>
+            <div *ngIf="submitted && eform.controls.email.errors.email">
+              Please enter a valid email address
+            </div>
+
+          </div>
+          <div *ngIf="err" class="text-danger">
+            Email is already registered
+          </div>
+        </div>
+        <button type="submit" (click)="createIdentity()" [disabled]="err" class="btn btn-primary mt-3">Send</button>
+      </form>
+    </div>
+  </div>
+
+</div>
