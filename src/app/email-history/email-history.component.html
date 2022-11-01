@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="card-body">
+        <h5 style="background-color: #bbdefb;">Email History</h5>
+        <button type="button" class="btn btn-danger float-end" data-bs-toggle="modal"
+            data-bs-target="#deleteConfirmationModal">Clear History</button>
+        <table class="table table-light mt-1">
+            <thead class="thead-light">
+                <tr>
+
+                    <th>No.</th>
+                    <th>Date & Time</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Template</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let email of emails; let i = index ">
+
+                    <td>{{i + 1}}</td>
+                    <td>{{email.date}}</td>
+                    <td>{{email.sender}}</td>
+                    <td>{{email.toAddresses}}</td>
+                    <td>{{email.templateName}}</td>
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Warning!</h5>
+
+            </div>
+            <div class="modal-body">
+                Are you sure to clear email history?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()"
+                    data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" (click)="clearEmailHistory()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>

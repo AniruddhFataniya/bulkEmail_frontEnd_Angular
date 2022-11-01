@@ -13,8 +13,8 @@ import { EmailHistoryComponent } from './email-history/email-history.component';
 import { ListRegisteredEmailsComponent } from './list-registered-emails/list-registered-emails.component';
 import { RegisterEmailIdentityComponent } from './register-email-identity/register-email-identity.component';
 import { CreateTemplateComponent } from './create-template/create-template.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { SanitizeHtmlPipe } from './sanitize-html-pipe';
+import { TemplateEditorComponent } from './template-editor/template-editor.component';
 
 
 @NgModule({
@@ -28,8 +28,8 @@ import { SanitizeHtmlPipe } from './sanitize-html-pipe';
     ListRegisteredEmailsComponent,
     RegisterEmailIdentityComponent,
     CreateTemplateComponent,
-    SidebarComponent,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    TemplateEditorComponent
     
     
   ],
@@ -39,6 +39,7 @@ import { SanitizeHtmlPipe } from './sanitize-html-pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    
     
     
   ],

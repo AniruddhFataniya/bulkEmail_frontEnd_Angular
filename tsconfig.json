@@ -17,6 +17,8 @@
     "noPropertyAccessFromIndexSignature": false,
     "moduleResolution": "node",
     "importHelpers": true,
+    "resolveJsonModule": true,
+    
     "target": "es2020",
     "module": "es2020",
     "lib": [

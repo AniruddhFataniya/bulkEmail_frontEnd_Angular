@@ -1,0 +1,86 @@
+<div class="container-fluid" style="width:100%">
+  
+  <h5 style="background-color: #bbdefb;">Create Template</h5>
+  <div class="card-body ">
+    <div *ngIf="showAlert">
+      <div class="alert alert-success">
+        <strong>Template Created!</strong>
+      </div>
+    </div>
+    <div *ngIf="templateFinalized">
+      <div class="alert alert-success">
+        <strong>Template design is Finalised, Now click on Create!</strong>
+      </div>
+    </div>
+    <div *ngIf="templateCountErr">
+      <div class="alert alert-danger">
+        <strong>You have reached the template quota limit, please delete some templates to create new!</strong>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2">
+
+        <form [formGroup]="templateForm">
+          <div class="form-group">
+            <label for="templateName">Template Name:</label>
+            <input type="text" class="form-control" id="templateName" formControlName="templateName"
+              (blur)="searchTemplate()"
+              [ngClass]="{'is-invalid':submitted && templateForm.controls.templateName.errors || err }"
+              placeholder="Enter a template name">
+            <div *ngIf="submitted && templateForm.controls.templateName.errors" class="text-danger">
+              <div *ngIf="submitted && templateForm.controls.templateName.errors.required">
+                Please enter a template name
+              </div>
+              <div *ngIf="submitted && templateForm.controls.templateName.errors.pattern">
+                Only alphanumeric characters, '_', and '-' are allowed
+              </div>
+
+            </div>
+            <div *ngIf="err" class="text-danger">
+              Template name already exists, please try another name
+            </div>
+
+          </div>
+
+          <div class="form-group ">
+            <label for="subject">Subject:</label>
+            <input type="text" class="form-control" id="subject" formControlName="subjectPart"
+              [ngClass]="{'is-invalid':submitted && templateForm.controls.subjectPart.errors}"
+              placeholder="Enter a subject for email">
+            <div *ngIf="submitted && templateForm.controls.subjectPart.errors" class="text-danger">
+              <div *ngIf="submitted && templateForm.controls.subjectPart.errors.required">
+                Please enter a subject
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="textPart">Text:</label>
+            <textarea type="text" class="form-control" id="textPart" formControlName="textPart"
+              [ngClass]="{'is-invalid':submitted && templateForm.controls.textPart.errors}"
+              placeholder="Enter the alternavie text">
+                        </textarea>
+            <div *ngIf="submitted && templateForm.controls.textPart.errors" class="text-danger">
+              <div *ngIf="submitted && templateForm.controls.textPart.errors.required">
+                Please enter some alternative text
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" (click)="createTemplate(templateForm)" [disabled]="err || templateCountErr"
+            class="btn btn-primary mt-3" id="submitBtn">Create</button>
+        </form>
+      </div>
+      
+      <!-- Template Editor-->
+      <div class="col-10 mt-3" style="height:100%;">
+
+        <button type="submit" (click)="finalizeTemplate()" class="btn btn-primary my-3" id="finalizeTemplate"
+          [disabled]="err || templateCountErr">Finalize Template Design</button>
+
+        <app-template-editor></app-template-editor>
+      </div>
+    </div>
+
+  </div>
